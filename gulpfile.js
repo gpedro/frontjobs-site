@@ -17,7 +17,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     minifycss = require('gulp-minify-css');
 
-var config = require('./gulp.conf.js');
+var config = require('./gulp.conf');
 
 /***************************************************************
    STYLES TASK
@@ -28,15 +28,8 @@ var config = require('./gulp.conf.js');
 
 gulp.task(config.tasks.styles, function() {
     return gulp.src(config.src.styles)
-        .pipe(sass({sourcemap: true}))
+        .pipe(sass())
         .pipe(gulp.dest(config.dist.styles));
-
-    // return gulp.src(config.src.styles)
-    //     .pipe(stylus({
-    //         use: ['nib']
-    //     }))
-    //     .pipe(plumber())
-    //     .pipe(gulp.dest(config.dist.styles));
 });
 
 gulp.task(config.tasks.cssmin, function() {
@@ -64,7 +57,8 @@ gulp.task(config.tasks.imagemin, function() {
 // lint my custom js
 gulp.task(config.tasks.jslint, function() {
     return gulp.src(config.src.js)
-        .pipe(jshint('.jshintrc'));
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'));
 });
 
 // minify all js files that shold not be concatinated
@@ -98,7 +92,7 @@ gulp.task(config.tasks.zip, function() {
 **************************************************************/
 
 gulp.task(config.tasks.browsersync, function() {
-    browserSync.init(['public/styles/*.css', 'public/js/*.js'], {
+    browserSync.init(['public/styles/*.css', 'public/js/*.js', './*.html'], {
         server: {
             baseDir: './',
             index: 'index.html'
@@ -109,7 +103,7 @@ gulp.task(config.tasks.browsersync, function() {
 
 gulp.task('build', [config.tasks.styles, config.tasks.cssmin, config.tasks.jsmin, config.tasks.zip, config.tasks.imagemin]);
 
-gulp.task('start', [config.tasks.styles, config.tasks.jslint, config.tasks.cssmin, config.tasks.browsersync]);
+gulp.task('start', [config.tasks.styles, config.tasks.jslint, config.tasks.browsersync]);
 
 gulp.task('default',['start'], function() {
   gulp.watch('app/styles/**/*.scss', [config.tasks.styles]);
