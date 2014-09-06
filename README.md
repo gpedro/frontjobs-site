@@ -1,4 +1,4 @@
-workflow-projects-gulp
+Workflow-Boilerplate Gulp
 =================
 
-Boilerplate para projetos em geral
+Boilerplate para projetos
