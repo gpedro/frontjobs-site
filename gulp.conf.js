@@ -6,14 +6,14 @@ module.exports = {
     src: {
         main    : 'app',
         styles  : 'app/styles/*.scss',
-        js      : 'app/js/*.js',
+        scripts : 'app/scripts/*.js',
         imgs    : 'app/imgs/*',
         fonts   : 'app/fonts'
     },
     dist: {
         main    : 'public',
         styles  : 'public/styles/',
-        js      : 'public/js/',
+        scripts : 'public/scripts/',
         imgs    : 'public/imgs/*',
         fonts   : 'public/fonts/'
     },
@@ -29,5 +29,12 @@ module.exports = {
         imgs        : 'imgs',
         browsersync : 'browsersync',
         zip         : 'zip'
+    },
+    syncConfig: {
+        files: ['styles/*.css','scripts/*.js', 'public/*.html'],
+        server: {
+            baseDir: 'public',
+            index: 'index.html'
+        }
     }
 }

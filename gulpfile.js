@@ -5,114 +5,19 @@
 ****************************************************************/
 
 var gulp = require('gulp'),
-    zip = require('gulp-zip'),
-    sass = require('gulp-ruby-sass'),
-    uglify = require('gulp-uglify'),
-    jshint = require('gulp-jshint'),
-    rename = require('gulp-rename'),
-    concat = require('gulp-concat'),
-    plumber = require('gulp-plumber'),
-    imagemin = require('gulp-imagemin'),
-    stylish = require('jshint-stylish'),
+    config = require('./gulp.conf.js'),
+    header = require('gulp-header'),
     browserSync = require('browser-sync'),
-    minifycss = require('gulp-minify-css');
+    reload = browserSync.reload,
+    requireDir = require('require-dir'),
+    dir = requireDir('./tasks');
 
-var config = require('./gulp.conf.js');
+gulp.task('build', [config.tasks.styles, config.tasks.cssmin, config.tasks.jsmin, config.tasks.imagemin,config.tasks.zip]);
 
-/***************************************************************
-   STYLES TASK
-   path: scr/stylus/*.styl
-   save to: public/css/style.css
-   dependence: gulp-stylus, gulp-plumber, gulp-minify-css
-***************************************************************/
-
-gulp.task(config.tasks.styles, function() {
-    return gulp.src(config.src.styles)
-        .pipe(sass({sourcemap: true}))
-        .pipe(gulp.dest(config.dist.styles));
-
-    // return gulp.src(config.src.styles)
-    //     .pipe(stylus({
-    //         use: ['nib']
-    //     }))
-    //     .pipe(plumber())
-    //     .pipe(gulp.dest(config.dist.styles));
-});
-
-gulp.task(config.tasks.cssmin, function() {
-    return gulp.src('public/styles/style.css')
-        .pipe(plumber())
-        .pipe(minifycss())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(config.dist.styles));
-});
-
-gulp.task(config.tasks.imagemin, function() {
-    return gulp.src(config.src.imgs)
-        .pipe(imagemin({
-            progressive: true,
-        }))
-        .pipe(gulp.dest(config.dist.imgs));
-});
-/******************************************************************
-4. JS TASKS
-   path: scr/js/*.js
-   save to: public/js/main.js
-   dependence: gulp-jshint, gulp-uglify, gulp-concat, gulp-rename
-*******************************************************************/
-
-// lint my custom js
-gulp.task(config.tasks.jslint, function() {
-    return gulp.src(config.src.js)
-        .pipe(jshint('.jshintrc'));
-});
-
-// minify all js files that shold not be concatinated
-gulp.task(config.tasks.jsmin, function() {
-    return gulp.src(config.dist.js)
-        .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(config.dist.js));
-});
-
-// minify & concatinate all other js
-// gulp.task(config.tasks.jsconcat, function() {
-//     gulp.src(config.paths.js)
-//         .pipe(concat('all.min.js'))
-//         .pipe(uglify())
-//         .pipe(rename({suffix: '.min'}))
-//         .pipe(gulp.dest(config.pathsMin.js));
-// });
-
-/**************************************************************
-6. ZIP TASKS
-**************************************************************/
-
-gulp.task(config.tasks.zip, function() {
-    return gulp.src('./public/**')
-        .pipe(zip('archive.zip'))
-        .pipe(gulp.dest('./'));
-});
-/**************************************************************
-5. BROWSER SYNC
-**************************************************************/
-
-gulp.task(config.tasks.browsersync, function() {
-    browserSync.init(['public/styles/*.css', 'public/js/*.js'], {
-        server: {
-            baseDir: './',
-            index: 'index.html'
-        }
-    });
-});
-
-
-gulp.task('build', [config.tasks.styles, config.tasks.cssmin, config.tasks.jsmin, config.tasks.zip, config.tasks.imagemin]);
-
-gulp.task('start', [config.tasks.styles, config.tasks.jslint, config.tasks.cssmin, config.tasks.browsersync]);
+gulp.task('start', [config.tasks.styles, config.tasks.jslint, config.tasks.browsersync]);
 
 gulp.task('default',['start'], function() {
-  gulp.watch('app/styles/**/*.scss', [config.tasks.styles]);
-  gulp.watch(config.src.js, [config.tasks.jslint]);
-  gulp.watch(config.dist.styles, [config.tasks.browsersync]);
+  gulp.watch('app/styles/**/*.scss', [config.tasks.styles, reload]);
+  gulp.watch(config.src.scripts, [config.tasks.jslint, reload]);
+  gulp.watch('public/*.html', reload);
 });
