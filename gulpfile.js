@@ -14,10 +14,11 @@ var gulp = require('gulp'),
 
 gulp.task('build', [config.tasks.styles, config.tasks.cssmin, config.tasks.jsmin, config.tasks.imagemin,config.tasks.zip]);
 
-gulp.task('start', [config.tasks.styles, config.tasks.jslint, config.tasks.browsersync]);
+gulp.task('start', [config.tasks.styles, config.tasks.imagemin, config.tasks.jslint, config.tasks.browsersync]);
 
 gulp.task('default',['start'], function() {
   gulp.watch('app/styles/**/*.scss', [config.tasks.styles, reload]);
   gulp.watch(config.src.scripts, [config.tasks.jslint, reload]);
+  gulp.watch('app/imgs/*.{png,jpg,gif}', [config.tasks.imagemin, reload]);
   gulp.watch('public/*.html', reload);
 });

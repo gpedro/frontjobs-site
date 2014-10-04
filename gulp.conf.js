@@ -7,7 +7,7 @@ module.exports = {
         main    : 'app',
         styles  : 'app/styles/*.scss',
         scripts : 'app/scripts/*.js',
-        imgs    : 'app/imgs/*',
+        imgs    : 'app/imgs/*.{png,jpg,gif}',
         fonts   : 'app/fonts'
     },
     dist: {
@@ -31,7 +31,7 @@ module.exports = {
         zip         : 'zip'
     },
     syncConfig: {
-        files: ['styles/*.css','scripts/*.js', 'public/*.html'],
+        files: ['styles/*.css','scripts/*.js', 'public/*.html', 'public/imgs/*.{png,jpg,gif}'],
         server: {
             baseDir: 'public',
             index: 'index.html'

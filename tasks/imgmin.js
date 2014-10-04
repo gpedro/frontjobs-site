@@ -1,3 +1,6 @@
+/***************************************************************
+   IMAGE TASK
+***************************************************************/
 var gulp = require('gulp'),
 		config = require('../gulp.conf.js'),
 		imagemin = require('gulp-imagemin');
