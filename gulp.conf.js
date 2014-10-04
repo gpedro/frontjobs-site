@@ -4,11 +4,11 @@
 module.exports = {
 
     src: {
-        main    : 'app',
-        styles  : 'app/styles/*.scss',
-        scripts : 'app/scripts/*.js',
-        imgs    : 'app/imgs/*.{png,jpg,gif}',
-        fonts   : 'app/fonts'
+        main    : 'src',
+        styles  : 'src/styles/*.scss',
+        scripts : 'src/scripts/*.js',
+        imgs    : 'src/imgs/*.{png,jpg,gif}',
+        fonts   : 'src/fonts'
     },
     dist: {
         main    : 'public',
