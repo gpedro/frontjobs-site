@@ -22,7 +22,7 @@ gulp.task(config.tasks.jslint, function() {
 
 // minify all js files that shold not be concatinated
 gulp.task(config.tasks.jsmin, function() {
-    return gulp.src(config.dist.scripts)
+    return gulp.src(config.dist.scripts + 'main.js')
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(config.dist.scripts));
