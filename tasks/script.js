@@ -6,7 +6,7 @@
 *******************************************************************/
 
 var gulp = require('gulp'),
-		config = require('../gulp.conf.js'),
+    config = require('../gulp.conf.js'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
     rename = require('gulp-rename'),
@@ -17,7 +17,8 @@ var gulp = require('gulp'),
 gulp.task(config.tasks.jslint, function() {
     return gulp.src(config.src.scripts)
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(gulp.dest(config.dist.scripts));
 });
 
 // minify all js files that shold not be concatinated
