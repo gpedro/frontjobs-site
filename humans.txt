@@ -3,9 +3,9 @@
 
 
 /* TEAM */
-  Author: Vitor Britto
-  Site: www.vitorbritto.com.br
-  Twitter: @vitorbritto
+  Author: Daniel Castro
+  Site: dancasttro.github.io
+  Twitter: @dancasttro
   Location: Brazil
 
 
