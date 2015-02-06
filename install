@@ -44,7 +44,7 @@ function clone {
 function folder {
 
 	msg_install "Criando diretórios"
-	mkdir -p src/{controllers,services,filters,directives}
+	mkdir -p src/{scripts,styles,imgs,fonts}
 	msg_ok "OK"
 	
 }
