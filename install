@@ -14,7 +14,7 @@ function msg_alert { echo "\033[1;31m✖ $1 ✖\033[0m"; }
 
 
 
-msg '     ______      __         ____        _ __                __      __      '  
+msg '     ______      __         ____        _ __                __      __      '
 msg '    / ____/_  __/ /___     / __ )____  (_) /__  _________  / /___ _/ /____  '
 msg '   / / __/ / / / / __ \   / __  / __ \/ / / _ \/ ___/ __ \/ / __  / __/ _ \ '
 msg '  / /_/ / /_/ / / /_/ /  / /_/ / /_/ / / /  __/ /  / /_/ / / /_/ / /_/  __/ '
@@ -38,7 +38,7 @@ function clone {
 	msg_install "Clonando..."
 	git clone https://github.com/dancasttro/html-boilerplate-project.git public
 	msg_ok "OK"
-	
+
 }
 
 function folder {
@@ -46,11 +46,11 @@ function folder {
 	msg_install "Criando diretórios"
 	mkdir -p src/{scripts,styles,imgs,fonts}
 	msg_ok "OK"
-	
+
 }
 function dependecies {
 	msg_installing "Installing Dependencies... please wait."
-	sudo npm install -q
+	sudo npm install
 	msg_ok "OK"
 }
 
