@@ -1,0 +1,32 @@
+@mixin swap-button-color($color, $hover, $active) {
+  background-color: $color;
+
+  &:hover,
+  &:focus,
+  .btn-group:focus &.dropdown-toggle {
+    background-color: $hover;
+  }
+  &:active,
+  .btn-group.open &.dropdown-toggle,
+  &.active {
+    background-color: $active;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-sizing($boxmodel: border-box) {
+  -webkit-box-sizing: $boxmodel;
+     -moz-box-sizing: $boxmodel;
+          box-sizing: $boxmodel;
+}
+
+@mixin box-shadow($properties) {
+  -webkit-box-shadow: $properties;
+     -moz-box-shadow: $properties;
+          box-shadow: $properties;
+}
