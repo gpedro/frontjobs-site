@@ -34,14 +34,30 @@ header {
 	h1, p {
 		text-align: center;
 		text-shadow: 0px 0px 5px #3C3C3C;
-		color: $turquoise;
+		color: white;
 	}
 	p {
-		font-size: 2em;
+		font-size: 1.3em;
 	}
 	.btn-jobs {
 		@include center(150px);
-		border: 2px solid $turquoise;
+		max-width: 200px;
+		font-size: 14px;
+		color: white;
+	}
+}
+.wrap-link-newjobs {
+	@include center(70px);
+	position: absolute;
+	bottom: 21px;
+	left: 0;
+	right: 0;
+	.btn-new-jobs {
+		width: 70px;
+		height: 70px;
+		display: block;
+		font-size: 50px;
+		color: #fff;
 	}
 }
 

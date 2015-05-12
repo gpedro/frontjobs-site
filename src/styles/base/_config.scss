@@ -82,3 +82,7 @@ $button-warning-hover:  overlay($warning, darken(white, 37.5%));
 $button-warning-active: mix($warning, black, 85%);
 $button-inverse-hover:  overlay($base, darken(white, 37.5%));
 $button-inverse-active: mix($base, black, 85%);
+
+a {
+	text-decoration: none;
+}
