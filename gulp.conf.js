@@ -5,7 +5,7 @@ module.exports = {
 
     src: {
         main    : 'src',
-        styles  : 'src/styles/*.scss',
+        styles  : 'src/styles/*.{css,styl}',
         scripts : 'src/scripts/*.js',
         imgs    : 'src/imgs/*.{png,jpg,gif}',
         fonts   : 'src/fonts'
@@ -35,6 +35,9 @@ module.exports = {
         server: {
             baseDir: 'public',
             index: 'index.html'
+        },
+        routes: {
+            '/bower_components': 'bower_components'
         }
     }
 }
