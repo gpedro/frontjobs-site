@@ -8,24 +8,23 @@
 var gulp = require('gulp'),
     config = require('../gulp.conf.js'),
     pkg = require('../package.json'),
-    sass = require('gulp-ruby-sass'),
+    stylus = require('gulp-stylus'),
+    jeet = require('jeet'),
+    rupture = require('rupture'),
     header = require('gulp-header'),
+    util = require('gulp-util'),
     rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
     minifycss = require('gulp-minify-css');
 
 gulp.task(config.tasks.styles, function() {
     return gulp.src(config.src.styles)
-        .pipe(sass())
+        .pipe(stylus({
+            'include css': true,
+            use: [jeet(), rupture()]
+        }).on('error', util.log))
         .pipe(banner())
         .pipe(gulp.dest(config.dist.styles));
-
-    // return gulp.src(config.src.styles)
-    //     .pipe(stylus({
-    //         use: ['nib']
-    //     }))
-    //     .pipe(plumber())
-    //     .pipe(gulp.dest(config.dist.styles));
 });
 
 gulp.task(config.tasks.cssmin, function() {
