@@ -14,6 +14,7 @@ var gulp = require('gulp'),
     header = require('gulp-header'),
     util = require('gulp-util'),
     rename = require('gulp-rename'),
+    autoprefixer = require('gulp-autoprefixer'),
     plumber = require('gulp-plumber'),
     minifycss = require('gulp-minify-css');
 
@@ -23,6 +24,7 @@ gulp.task(config.tasks.styles, function() {
             'include css': true,
             use: [jeet(), rupture()]
         }).on('error', util.log))
+        .pipe(autoprefixer({}))
         .pipe(banner())
         .pipe(gulp.dest(config.dist.styles));
 });
